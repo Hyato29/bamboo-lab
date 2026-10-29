@@ -120,26 +120,40 @@
         <li><a href="#kontak">Contact</a></li>
       </ul>
       <div class="r">
-        <button
-          class="pill theme-toggle"
-          id="theme-toggle"
-          type="button"
-          aria-label="Switch to dark mode"
-          aria-pressed="false"
-          title="Switch to dark mode"
+        <div
+          class="site-controls"
+          role="group"
+          aria-label="Language and appearance settings"
         >
-          <svg viewBox="0 0 24 24" aria-hidden="true">
-            <path
-              class="moon"
-              d="M20.2 15.6A8.4 8.4 0 0 1 8.4 3.8 8.5 8.5 0 1 0 20.2 15.6Z"
-            />
-            <g class="sun">
-              <circle cx="12" cy="12" r="4" />
-              <path d="M12 2v2m0 16v2M4.93 4.93l1.42 1.42m11.3 11.3 1.42 1.42M2 12h2m16 0h2M4.93 19.07l1.42-1.42m11.3-11.3 1.42-1.42" />
-            </g>
-          </svg>
-          <span>Dark</span>
-        </button>
+          <label class="language-control">
+            <span class="sr-only">Language</span>
+            <select id="language-select" aria-label="Language">
+              <option value="id">Bahasa Indonesia</option>
+              <option value="en">English</option>
+              <option value="ja">日本語</option>
+            </select>
+          </label>
+          <button
+            class="theme-toggle"
+            id="theme-toggle"
+            type="button"
+            aria-label="Switch to dark mode"
+            aria-pressed="false"
+            title="Switch to dark mode"
+          >
+            <svg viewBox="0 0 24 24" aria-hidden="true">
+              <path
+                class="moon"
+                d="M20.2 15.6A8.4 8.4 0 0 1 8.4 3.8 8.5 8.5 0 1 0 20.2 15.6Z"
+              />
+              <g class="sun">
+                <circle cx="12" cy="12" r="4" />
+                <path d="M12 2v2m0 16v2M4.93 4.93l1.42 1.42m11.3 11.3 1.42 1.42M2 12h2m16 0h2M4.93 19.07l1.42-1.42m11.3-11.3 1.42-1.42" />
+              </g>
+            </svg>
+            <span>Dark</span>
+          </button>
+        </div>
         <button class="pill dark" data-book>
           Consultation <span aria-hidden="true">→</span>
         </button>
