@@ -3,6 +3,33 @@ const LANGUAGE_STORAGE_KEY = "bamboo-lab-language";
 const themeToggle = document.getElementById("theme-toggle");
 const languageSelect = document.getElementById("language-select");
 const siteControls = document.querySelector(".site-controls");
+const SITE_URL = "https://bamboo-lab.vercel.app";
+const SEO_METADATA = {
+  en: {
+    title: "Bamboo Lab Architect | Bamboo Design & Build in Lombok",
+    description:
+      "Bamboo Lab designs and builds bamboo villas, restaurants, and pavilions in Lombok, Indonesia. Explore custom bamboo architecture from concept to construction.",
+    ogDescription:
+      "Custom bamboo villas, restaurants, and pavilions designed and built in Lombok, Indonesia.",
+    locale: "en_US",
+  },
+  id: {
+    title: "Bamboo Lab Architect | Arsitektur Bambu di Lombok",
+    description:
+      "Bamboo Lab merancang dan membangun vila, restoran, serta paviliun bambu di Lombok, Indonesia. Kenali layanan desain dan konstruksi bambu kustom dari konsep hingga pembangunan.",
+    ogDescription:
+      "Vila, restoran, dan paviliun bambu kustom yang dirancang dan dibangun di Lombok, Indonesia.",
+    locale: "id_ID",
+  },
+  ja: {
+    title: "Bamboo Lab Architect | ロンボク島の竹建築",
+    description:
+      "Bamboo Labはインドネシア・ロンボク島で竹のヴィラ、レストラン、パビリオンを設計・施工します。構想から建設まで、オーダーメイドの竹建築をご覧ください。",
+    ogDescription:
+      "インドネシア・ロンボク島で設計・施工する、オーダーメイドの竹のヴィラ、レストラン、パビリオン。",
+    locale: "ja_JP",
+  },
+};
 const LANGUAGE_COPY = {
   id: {
     Language: "Bahasa",
@@ -366,10 +393,23 @@ let currentLanguage = "en";
 let dynamicContentReady = false;
 let refreshSceneLanguage = () => {};
 let initialLanguage = "en";
+const requestedLanguage = new URLSearchParams(location.search).get("lang");
 try {
-  const savedLanguage = localStorage.getItem(LANGUAGE_STORAGE_KEY);
-  if (savedLanguage === "en" || savedLanguage === "id" || savedLanguage === "ja") {
-    initialLanguage = savedLanguage;
+  if (
+    requestedLanguage === "en" ||
+    requestedLanguage === "id" ||
+    requestedLanguage === "ja"
+  ) {
+    initialLanguage = requestedLanguage;
+  } else {
+    const savedLanguage = localStorage.getItem(LANGUAGE_STORAGE_KEY);
+    if (
+      savedLanguage === "en" ||
+      savedLanguage === "id" ||
+      savedLanguage === "ja"
+    ) {
+      initialLanguage = savedLanguage;
+    }
   }
 } catch (error) {
   console.warn("Unable to read the saved language preference.", error);
@@ -412,6 +452,32 @@ function applyLanguage(language, save = false) {
   currentLanguage = language;
   document.documentElement.lang = language;
   languageSelect.value = language;
+  const metadata = SEO_METADATA[language];
+  const localizedUrl = `${SITE_URL}/?lang=${language}`;
+  document.title = metadata.title;
+  document.querySelector('meta[name="description"]').content =
+    metadata.description;
+  document.querySelector('meta[property="og:title"]').content = metadata.title;
+  document.querySelector('meta[property="og:description"]').content =
+    metadata.ogDescription;
+  document.querySelector('meta[property="og:locale"]').content =
+    metadata.locale;
+  document.querySelector('meta[property="og:url"]').content = localizedUrl;
+  document.querySelector('meta[name="twitter:title"]').content =
+    metadata.title;
+  document.querySelector('meta[name="twitter:description"]').content =
+    metadata.ogDescription;
+  document.querySelector('link[rel="canonical"]').href = localizedUrl;
+
+  const url = new URL(location.href);
+  if (url.searchParams.get("lang") !== language) {
+    url.searchParams.set("lang", language);
+    try {
+      history.replaceState(null, "", url);
+    } catch (error) {
+      console.warn("Unable to synchronize the selected language in the URL.", error);
+    }
+  }
   staticTextNodes.forEach(({ node, source, value }) => {
     const leading = value.match(/^\s*/)?.[0] ?? "";
     const trailing = value.match(/\s*$/)?.[0] ?? "";
@@ -873,7 +939,7 @@ function startScene() {
     canvas.style.background = "#e9dcc2";
     return;
   }
-  renderer.setPixelRatio(Math.min(devicePixelRatio, 2));
+  renderer.setPixelRatio(Math.min(devicePixelRatio || 1, 1.5));
   renderer.shadowMap.enabled = true;
   renderer.shadowMap.type = THREE.PCFSoftShadowMap;
   const BG = 0xefe5cf;
@@ -2048,7 +2114,8 @@ function startScene() {
   scene.add(new THREE.HemisphereLight(0xfff3e0, 0xe0d1b4, 0.85));
   const sun = new THREE.DirectionalLight(0xffefd6, 0.55);
   sun.castShadow = true;
-  sun.shadow.mapSize.set(2048, 2048);
+  const shadowResolution = innerWidth < 768 ? 1024 : 2048;
+  sun.shadow.mapSize.set(shadowResolution, shadowResolution);
   Object.assign(sun.shadow.camera, {
     left: -42,
     right: 42,
@@ -2096,6 +2163,21 @@ function startScene() {
     lastIdx = -1,
     prevD = 0;
   const reduce = matchMedia("(prefers-reduced-motion: reduce)").matches;
+  let stageVisible = !("IntersectionObserver" in window);
+  let frameHandle = null;
+  const scheduleFrame = () => {
+    if (stageVisible && !document.hidden && frameHandle === null) {
+      frameHandle = requestAnimationFrame(frame);
+    }
+  };
+  if ("IntersectionObserver" in window) {
+    const stageObserver = new IntersectionObserver(([entry]) => {
+      stageVisible = entry.isIntersecting;
+      scheduleFrame();
+    });
+    stageObserver.observe(canvas);
+  }
+  document.addEventListener("visibilitychange", scheduleFrame);
   function readScroll() {
     const r = journey.getBoundingClientRect();
     const p = Math.max(0, Math.min(1, -r.top / Math.max(1, journeyRange())));
@@ -2113,6 +2195,8 @@ function startScene() {
   let faceY = 0;
 
   function frame() {
+    frameHandle = null;
+    if (!stageVisible || document.hidden) return;
     const dt = Math.min(clock.getDelta(), 0.05),
       T = clock.elapsedTime;
     cur += (tgtU - cur) * (reduce ? 1 : Math.min(1, dt * 5));
@@ -2170,9 +2254,9 @@ function startScene() {
       b.style.width = Math.max(0, Math.min(1, u - i + 1)) * 100 + "%";
     });
     renderer.render(scene, cam);
-    requestAnimationFrame(frame);
+    scheduleFrame();
   }
-  frame();
+  scheduleFrame();
 }
 (document.fonts && document.fonts.load
   ? Promise.race([
@@ -2187,61 +2271,28 @@ function startScene() {
   .catch(() => {})
   .then(startScene);
 
-/* ---------- ScrollReveal Animations ---------- */
-if (typeof ScrollReveal !== "undefined") {
-  const sr = ScrollReveal({
-    origin: "bottom",
-    distance: "36px",
-    duration: 850,
-    delay: 100,
-    easing: "cubic-bezier(0.22, 1, 0.36, 1)",
-    reset: false, // Animation runs only once per scroll
+/* ---------- Scroll animations ---------- */
+if (
+  "IntersectionObserver" in window &&
+  !matchMedia("(prefers-reduced-motion: reduce)").matches
+) {
+  const revealTargets = document.querySelectorAll(
+    "#karya .sec-h > *, #karya .doc, #layanan .sec-h > *, #layanan .plan, #material .sec-h > *, #material .why > *, #reviews .sec-h > *, #reviews .review-card, #kontak .cta, #kontak .fine",
+  );
+  const revealObserver = new IntersectionObserver(
+    (entries, observer) => {
+      entries.forEach((entry) => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add("is-visible");
+          observer.unobserve(entry.target);
+        }
+      });
+    },
+    { rootMargin: "0px 0px -32px 0px", threshold: 0.08 },
+  );
+  revealTargets.forEach((element, index) => {
+    element.classList.add("reveal-on-scroll");
+    element.style.transitionDelay = `${Math.min(index % 4, 3) * 70}ms`;
+    revealObserver.observe(element);
   });
-
-  // Projects Section (#karya)
-  sr.reveal("#karya .sec-h h2", { origin: "left", distance: "28px" });
-  sr.reveal("#karya .sec-h p", {
-    origin: "right",
-    distance: "28px",
-    delay: 180,
-  });
-  sr.reveal("#karya .doc", { interval: 140 });
-
-  // Services Section (#layanan)
-  sr.reveal("#layanan .sec-h h2", { origin: "left", distance: "28px" });
-  sr.reveal("#layanan .sec-h p", {
-    origin: "right",
-    distance: "28px",
-    delay: 180,
-  });
-  sr.reveal("#layanan .plan", { interval: 160, distance: "44px" });
-
-  // Why Bamboo Section (#material)
-  sr.reveal("#material .sec-h h2", { origin: "left", distance: "28px" });
-  sr.reveal("#material .sec-h p", {
-    origin: "right",
-    distance: "28px",
-    delay: 180,
-  });
-  sr.reveal("#material .why .q", { interval: 140 });
-  sr.reveal("#material .why .big", {
-    origin: "right",
-    distance: "36px",
-    delay: 350,
-  });
-
-  // Contact Section / Footer (#kontak)
-  sr.reveal("#kontak .cta", {
-    origin: "bottom",
-    distance: "40px",
-    duration: 950,
-    scale: 0.97,
-  });
-  sr.reveal("#kontak .fine", {
-    origin: "bottom",
-    distance: "16px",
-    delay: 250,
-  });
-
-  sr.reveal("#reviews .review-card", { interval: 140, distance: "36px" });
 }

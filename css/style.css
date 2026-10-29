@@ -89,6 +89,15 @@ section.blk,
 footer#kontak {
   overflow-x: clip;
 }
+.reveal-on-scroll {
+  transform: translateY(24px);
+  transition:
+    transform 0.65s cubic-bezier(0.22, 1, 0.36, 1);
+}
+.reveal-on-scroll.is-visible {
+  opacity: 1;
+  transform: none;
+}
 .gut {
   padding-left: max(16px, env(safe-area-inset-left, 0px));
   padding-right: max(16px, env(safe-area-inset-right, 0px));
@@ -1234,7 +1243,12 @@ footer {
   }
 }
 @media (prefers-reduced-motion: reduce) {
-  .step {
+  .step,
+  .reveal-on-scroll {
     transition: opacity 0.2s;
+  }
+  .reveal-on-scroll {
+    transform: none;
+    transition: none;
   }
 }
