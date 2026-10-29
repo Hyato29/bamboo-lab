@@ -1015,7 +1015,9 @@ function startScene() {
     canvas.style.background = "#e9dcc2";
     return;
   }
-  renderer.setPixelRatio(Math.min(devicePixelRatio || 1, 1.5));
+  const maxPixelRatio = () => (innerWidth <= 768 ? 1.25 : 1.5);
+  const pixelRatio = () => Math.min(devicePixelRatio || 1, maxPixelRatio());
+  renderer.setPixelRatio(pixelRatio());
   renderer.shadowMap.enabled = true;
   renderer.shadowMap.type = THREE.PCFSoftShadowMap;
   const BG = 0xefe5cf;
@@ -2226,6 +2228,9 @@ function startScene() {
     cam.updateProjectionMatrix();
   }
   function resize() {
+    if (renderer.getPixelRatio() !== pixelRatio()) {
+      renderer.setPixelRatio(pixelRatio());
+    }
     renderer.setSize(innerWidth, innerHeight, false);
     view.aspect = innerWidth / innerHeight;
     applyCam();
