@@ -32,6 +32,10 @@ body {
   -webkit-font-smoothing: antialiased;
   overflow-x: hidden;
 }
+section.blk,
+footer#kontak {
+  overflow-x: clip;
+}
 .gut {
   padding-left: max(16px, env(safe-area-inset-left, 0px));
   padding-right: max(16px, env(safe-area-inset-right, 0px));

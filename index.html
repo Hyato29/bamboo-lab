@@ -1,10 +1,15 @@
 <!doctype html>
-<html>
+<html lang="en">
   <head>
     <meta charset="utf8" />
     <meta
       name="viewport"
       content="width=device-width,initial-scale=1,viewport-fit=cover"
+    />
+    <link
+      rel="icon"
+      type="image/svg+xml"
+      href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Cdefs%3E%3CclipPath id='round'%3E%3Ccircle cx='50' cy='50' r='50'/%3E%3C/clipPath%3E%3C/defs%3E%3Cg clip-path='url(%23round)'%3E%3Crect width='100' height='100' fill='%230f2744'/%3E%3Cpath d='M41 84V26M52 88V14M63 84V32' stroke='%23d6b273' fill='none' stroke-linecap='round' stroke-width='4'/%3E%3Ccircle cx='50' cy='50' r='46' fill='none' stroke='%23d6b273' stroke-width='3'/%3E%3C/g%3E%3C/svg%3E"
     />
     <style>
       :root {
@@ -104,25 +109,19 @@
     </svg>
 
     <header class="nav">
-      <a class="logo" href="#top" aria-label="Bamboo Lab Architect, beranda"
+      <a class="logo" href="#top" aria-label="Bamboo Lab Architect, home"
         ><svg aria-hidden="true"><use href="#lg" /></svg
         ><span>BAMBOO <b>LAB</b></span></a
       >
       <ul>
-        <li><a href="#karya">Karya</a></li>
-        <li><a href="#layanan">Layanan</a></li>
-        <li><a href="#material">Kenapa Bambu</a></li>
-        <li><a href="#kontak">Kontak</a></li>
+        <li><a href="#karya">Projects</a></li>
+        <li><a href="#layanan">Services</a></li>
+        <li><a href="#material">Why Bamboo</a></li>
+        <li><a href="#kontak">Contact</a></li>
       </ul>
       <div class="r">
-        <a
-          class="pill"
-          href="https://www.instagram.com/bamboolab.lombok/"
-          target="_blank"
-          rel="noopener"
-          >Instagram</a
-        ><button class="pill dark" data-book>
-          Konsultasi <span aria-hidden="true">→</span>
+        <button class="pill dark" data-book>
+          Consultation <span aria-hidden="true">→</span>
         </button>
       </div>
     </header>
@@ -131,130 +130,133 @@
       <div class="stage">
         <canvas
           id="gl"
-          aria-label="Ilustrasi 3D perjalanan satu proyek bambu Bamboo Lab"
+          aria-label="3D illustration of a bamboo project journey by Bamboo Lab"
           role="img"
         ></canvas>
         <div class="veil"></div>
         <div class="steps">
           <article class="step on" data-i="0">
             <p class="eyebrow">Bamboo Lab Architect · Lombok</p>
-            <h1>Dari Rumpun Bambu <span class="o">Jadi Ruang Hidup.</span></h1>
+            <h1>From Bamboo Groves <span class="o">To Living Spaces.</span></h1>
             <p>
-              Kami merancang dan membangun villa, restoran, dan pavilion bambu
-              dengan atap melengkung khas. Ikuti perjalanan satu proyek, dari
-              bahan sampai serah terima.
+              We design and build bamboo villas, restaurants, and pavilions with
+              signature curved roofs. Follow a single project's journey from
+              materials to handover.
             </p>
             <form class="card search" id="search">
               <div class="f">
-                <label for="tipe">JENIS BANGUNAN</label>
+                <label for="tipe">BUILDING TYPE</label>
                 <select id="tipe">
-                  <option value="0">Villa &amp; pod bambu</option>
-                  <option value="1">Restoran &amp; kafe</option>
-                  <option value="2">Pavilion &amp; gazebo</option>
-                  <option value="3">Resort &amp; wisata</option>
+                  <option value="0">Bamboo villas &amp; pods</option>
+                  <option value="1">Restaurants &amp; cafes</option>
+                  <option value="2">Pavilions &amp; gazebos</option>
+                  <option value="3">Resorts &amp; tourism</option>
                 </select>
               </div>
               <div class="f">
-                <label for="tahap">TAHAP ANDA</label>
+                <label for="tahap">YOUR STAGE</label>
                 <select id="tahap">
-                  <option>Baru punya ide</option>
-                  <option>Sudah punya lahan</option>
-                  <option>Sudah punya gambar</option>
+                  <option>Just have an idea</option>
+                  <option>Already own land</option>
+                  <option>Already have drawings</option>
                 </select>
               </div>
-              <button class="go" aria-label="Mulai konsultasi">→</button>
+              <button class="go" aria-label="Start consultation">→</button>
             </form>
             <div class="stats">
-              <div><strong>Bambu</strong><span>Struktur &amp; atap</span></div>
-              <div><strong>Lombok</strong><span>Basis proyek</span></div>
-              <div><strong>Custom</strong><span>Tiap desain</span></div>
+              <div>
+                <strong>Bamboo</strong><span>Structure &amp; roof</span>
+              </div>
+              <div><strong>Lombok</strong><span>Project base</span></div>
+              <div><strong>Custom</strong><span>Every design</span></div>
             </div>
           </article>
 
           <article class="step" data-i="1">
-            <p class="eyebrow">Langkah 1 · Bahan</p>
+            <p class="eyebrow">Step 1 · Materials</p>
             <h2>
-              Dipilih dari Rumpun,
-              <span class="o">Diawetkan dengan Benar.</span>
+              Selected from Groves,
+              <span class="o">Properly Treated.</span>
             </h2>
             <p>
-              Batang dipilih menurut umur dan jenisnya, lalu diawetkan agar
-              tahan serangga. Bahan yang tepat menentukan umur bangunan.
+              Stems are chosen based on age and species, then treated to resist
+              insects. The right material ensures building longevity.
             </p>
             <div class="card hide-m">
-              <b>Tahap bahan</b> · contoh alur
+              <b>Material stage</b> · workflow example
               <ul class="chk" style="margin-top: 10px">
-                <li><span>Pilih batang matang</span><span>Selesai</span></li>
-                <li><span>Rendam pengawet</span><span>Selesai</span></li>
+                <li><span>Select mature stems</span><span>Completed</span></li>
+                <li><span>Preservative soaking</span><span>Completed</span></li>
                 <li class="wait">
-                  <span>Pengeringan</span><span>Berjalan</span>
+                  <span>Drying process</span><span>In progress</span>
                 </li>
               </ul>
             </div>
           </article>
 
           <article class="step" data-i="2">
-            <p class="eyebrow">Langkah 2 · Desain</p>
+            <p class="eyebrow">Step 2 · Design</p>
             <h2>
-              Dirancang Bersama,
-              <span class="o">Dilihat Sebelum Dibangun.</span>
+              Designed Together,
+              <span class="o">Visualized Before Building.</span>
             </h2>
             <p>
-              Sketsa, maket, dan model 3D membantu Anda melihat bentuk atap,
-              bukaan, dan ruang sebelum satu batang pun dipotong.
+              Sketches, mockups, and 3D models help you visualize roof shapes,
+              openings, and spaces before a single stem is cut.
             </p>
             <div class="card hide-m">
-              <b>Contoh brief</b> · pavilion restoran
+              <b>Brief example</b> · restaurant pavilion
               <div class="specs">
-                <div><small>BENTANG</small><strong>14 m</strong></div>
-                <div><small>TINGGI</small><strong>8 m</strong></div>
-                <div><small>ATAP</small><strong>Shingle bambu</strong></div>
-                <div><small>FUNGSI</small><strong>Restoran</strong></div>
+                <div><small>SPAN</small><strong>14 m</strong></div>
+                <div><small>HEIGHT</small><strong>8 m</strong></div>
+                <div><small>ROOF</small><strong>Bamboo shingle</strong></div>
+                <div><small>FUNCTION</small><strong>Restaurant</strong></div>
               </div>
             </div>
           </article>
 
           <article class="step" data-i="3">
-            <p class="eyebrow">Langkah 3 · Bengkel</p>
+            <p class="eyebrow">Step 3 · Workshop</p>
             <h2>
-              Dirakit di Bengkel,
-              <span class="o">Dipasang Cepat di Lokasi.</span>
+              Assembled in Workshop,
+              <span class="o">Installed Quickly on Site.</span>
             </h2>
             <p>
-              Rangka dilengkungkan, disambung, dan dicek di bengkel. Komponen
-              jadi dikirim ke lokasi untuk dipasang.
+              Frames are curved, joined, and inspected in the workshop.
+              Prefabricated components are then shipped to the location for
+              assembly.
             </p>
             <div class="card hide-m">
               <ul class="chk">
-                <li><span>Lengkung rangka</span><span>Selesai</span></li>
-                <li><span>Sambungan &amp; pasak</span><span>Selesai</span></li>
+                <li><span>Frame curving</span><span>Completed</span></li>
+                <li><span>Joints &amp; dowels</span><span>Completed</span></li>
                 <li class="wait">
-                  <span>Shingle atap</span><span>Dikerjakan</span>
+                  <span>Roof shingles</span><span>In progress</span>
                 </li>
               </ul>
             </div>
           </article>
 
           <article class="step" data-i="4">
-            <p class="eyebrow">Langkah 4 · Lokasi</p>
+            <p class="eyebrow">Step 4 · Location</p>
             <h2>
-              Berdiri di Lahan, <span class="o">Atap Mulai Melengkung.</span>
+              Standing on Site, <span class="o">Roofs Begin to Curve.</span>
             </h2>
             <p>
-              Tim memasang rangka utama, menutup atap dengan shingle bambu, lalu
-              merapikan detail sampai siap ditempati.
+              The team installs the main frame, covers the roof with bamboo
+              shingles, and refines details until ready for occupancy.
             </p>
             <div class="card hide-m prg">
               <div>
-                <div class="t"><span>Pondasi</span><span>100%</span></div>
+                <div class="t"><span>Foundation</span><span>100%</span></div>
                 <div class="bar"><i style="width: 100%"></i></div>
               </div>
               <div>
-                <div class="t"><span>Rangka utama</span><span>100%</span></div>
+                <div class="t"><span>Main frame</span><span>100%</span></div>
                 <div class="bar"><i style="width: 100%"></i></div>
               </div>
               <div>
-                <div class="t"><span>Atap shingle</span><span>45%</span></div>
+                <div class="t"><span>Shingle roof</span><span>45%</span></div>
                 <div class="bar"><i style="width: 45%"></i></div>
               </div>
               <div>
@@ -262,44 +264,42 @@
                 <div class="bar"><i style="width: 0"></i></div>
               </div>
               <span style="color: var(--muted); font-size: 10.5px"
-                >Contoh progres proyek</span
+                >Project progress example</span
               >
             </div>
           </article>
 
           <article class="step" data-i="5">
-            <p class="eyebrow">Langkah 5 · Serah terima</p>
+            <p class="eyebrow">Step 5 · Handover</p>
             <h2>
-              Siap Dinikmati, <span class="o">Menyatu dengan Lanskap.</span>
+              Ready to Enjoy,
+              <span class="o">Blending with the Landscape.</span>
             </h2>
             <p>
-              Bangunan selesai: sejuk, hangat, dan menyatu dengan sekitarnya.
-              Mulai dari cerita Anda, kami bantu mewujudkannya.
+              The building is complete: cool, warm, and harmonious with its
+              surroundings. Starting from your story, we help bring it to life.
             </p>
             <div class="card hide-m">
               <div class="row">
-                <b>Mulai dari mana?</b><span class="link">Gratis bertanya</span>
+                <b>Where to start?</b><span class="link">Free to ask</span>
               </div>
               <ul class="chk" style="margin-top: 10px">
                 <li>
-                  <span>Ceritakan lahan &amp; kebutuhan</span
-                  ><span>Langkah 1</span>
+                  <span>Share land &amp; requirements</span><span>Step 1</span>
                 </li>
                 <li>
-                  <span>Diskusi konsep &amp; bentuk</span><span>Langkah 2</span>
+                  <span>Discuss concept &amp; form</span><span>Step 2</span>
                 </li>
-                <li>
-                  <span>Rencana desain &amp; bangun</span><span>Langkah 3</span>
-                </li>
+                <li><span>Design &amp; build plan</span><span>Step 3</span></li>
               </ul>
-              <button class="btn-wide" data-book>Mulai konsultasi</button>
+              <button class="btn-wide" data-book>Start consultation</button>
             </div>
           </article>
         </div>
-        <div class="hand" id="hand">Hangat, kuat,<br />ramah bumi.</div>
-        <nav class="prog" aria-label="Langkah perjalanan proyek">
+        <div class="hand" id="hand">Warm, strong,<br />earth-friendly.</div>
+        <nav class="prog" aria-label="Project journey steps">
           <div class="items" id="prog"></div>
-          <button class="skip" id="skip">Lewati ↓</button>
+          <button class="skip" id="skip">Skip ↓</button>
         </nav>
       </div>
     </div>
@@ -307,10 +307,10 @@
     <section class="blk gut" id="karya">
       <div class="wrap">
         <div class="sec-h">
-          <h2>Bentuk yang Lahir <span class="o">dari Bambu.</span></h2>
+          <h2>Forms Born <span class="o">From Bamboo.</span></h2>
           <p>
-            Empat jenis bangunan yang paling sering kami kerjakan. Setiap desain
-            disesuaikan dengan lahan dan cerita pemiliknya.
+            Four building types we work on most frequently. Every design is
+            customized to the land and the owner's story.
           </p>
         </div>
         <div class="docs" id="docs"></div>
@@ -320,52 +320,52 @@
     <section class="blk band gut" id="layanan">
       <div class="wrap">
         <div class="sec-h">
-          <h2>Tiga Cara <span class="o">Bekerja Sama.</span></h2>
+          <h2>Three Ways <span class="o">To Work Together.</span></h2>
           <p>
-            Pilih yang sesuai tahap Anda. Lingkup dan biaya dibahas setelah kami
-            memahami proyeknya.
+            Choose what fits your current stage. Scope and costs are discussed
+            after we understand the project.
           </p>
         </div>
         <div class="plans">
           <div class="plan">
-            <h3>Konsep</h3>
-            <div class="nm">Desain Konsep</div>
-            <p class="sub">Untuk Anda yang baru punya ide atau lahan.</p>
+            <h3>Concept</h3>
+            <div class="nm">Concept Design</div>
+            <p class="sub">For those who just have an idea or land.</p>
             <ul>
-              <li>Diskusi kebutuhan &amp; lahan</li>
-              <li>Sketsa bentuk &amp; denah awal</li>
-              <li>Visual 3D sederhana</li>
-              <li>Arahan material bambu</li>
+              <li>Needs &amp; land discussion</li>
+              <li>Initial sketches &amp; floor plans</li>
+              <li>Simple 3D visuals</li>
+              <li>Bamboo material guidance</li>
             </ul>
-            <button class="pill" data-book data-type="0">Diskusikan</button>
+            <button class="pill" data-book data-type="0">Discuss</button>
           </div>
           <div class="plan hot">
-            <span class="badge">Paling lengkap</span>
-            <h3>Desain &amp; Bangun</h3>
-            <div class="nm">Satu Tim, Sampai Jadi</div>
-            <p class="sub">Dari gambar sampai bangunan berdiri.</p>
+            <span class="badge">Most complete</span>
+            <h3>Design &amp; Build</h3>
+            <div class="nm">One Team, Until Done</div>
+            <p class="sub">From drawings to a standing building.</p>
             <ul>
-              <li>Semua isi Desain Konsep</li>
-              <li>Gambar kerja &amp; detail sambungan</li>
-              <li>Fabrikasi rangka di bengkel</li>
-              <li>Pemasangan &amp; finishing di lokasi</li>
-              <li>Serah terima bangunan</li>
+              <li>All Concept Design inclusions</li>
+              <li>Working drawings &amp; joint details</li>
+              <li>Workshop frame fabrication</li>
+              <li>On-site installation &amp; finishing</li>
+              <li>Building handover</li>
             </ul>
             <button class="pill or" data-book data-type="1">
-              Mulai konsultasi
+              Start consultation
             </button>
           </div>
           <div class="plan">
-            <h3>Teknis</h3>
-            <div class="nm">Detail &amp; Pengawasan</div>
-            <p class="sub">Untuk Anda yang sudah punya desain.</p>
+            <h3>Technical</h3>
+            <div class="nm">Details &amp; Supervision</div>
+            <p class="sub">For those who already have a design.</p>
             <ul>
-              <li>Tinjauan gambar &amp; struktur</li>
-              <li>Detail atap melengkung</li>
-              <li>Pendampingan di lapangan</li>
-              <li>Pengecekan mutu bahan</li>
+              <li>Drawing &amp; structure review</li>
+              <li>Curved roof details</li>
+              <li>On-site assistance</li>
+              <li>Material quality checks</li>
             </ul>
-            <button class="pill" data-book data-type="2">Diskusikan</button>
+            <button class="pill" data-book data-type="2">Discuss</button>
           </div>
         </div>
       </div>
@@ -374,10 +374,10 @@
     <section class="blk gut" id="material">
       <div class="wrap">
         <div class="sec-h">
-          <h2>Kenapa <span class="o">Bambu.</span></h2>
+          <h2>Why <span class="o">Bamboo.</span></h2>
           <p>
-            Bambu bukan sekadar tampilan. Ada alasan teknis dan lingkungan di
-            balik pilihan ini.
+            Bamboo is more than just aesthetics. There are technical and
+            environmental reasons behind this choice.
           </p>
         </div>
         <div class="why">
@@ -393,10 +393,10 @@
             >
               <path d="M20 36V8M12 26c0-8 8-12 8-18M28 22c0-6-8-8-8-14" />
             </svg>
-            <h3>Cepat tumbuh</h3>
+            <h3>Fast growing</h3>
             <p>
-              Rumpun bambu tumbuh jauh lebih cepat daripada kayu keras, sehingga
-              panennya bisa terus diulang.
+              Bamboo groves grow much faster than hardwoods, allowing harvests
+              to be continuously repeated.
             </p>
           </div>
           <div class="q">
@@ -411,10 +411,10 @@
             >
               <path d="M6 30c8-20 20-20 28 0M10 30V14M30 30V14M20 30V8" />
             </svg>
-            <h3>Kuat dan lentur</h3>
+            <h3>Strong and flexible</h3>
             <p>
-              Seratnya kuat menahan tarik dan lentur, cocok untuk rangka
-              melengkung yang sulit dibuat dari bahan lain.
+              Its fibers strongly resist tension and flexibility, perfect for
+              curved frames that are hard to make from other materials.
             </p>
           </div>
           <div class="q">
@@ -430,17 +430,16 @@
               <circle cx="20" cy="20" r="14" />
               <path d="M6 20h28M20 6c-8 8-8 20 0 28M20 6c8 8 8 20 0 28" />
             </svg>
-            <h3>Ramah lingkungan</h3>
+            <h3>Eco-friendly</h3>
             <p>
-              Bambu menyimpan karbon selama tumbuh dan butuh energi olah yang
-              jauh lebih kecil daripada baja atau beton.
+              Bamboo stores carbon while growing and requires far less
+              processing energy than steel or concrete.
             </p>
           </div>
           <div class="big">
             <strong>Lombok</strong
             ><span
-              >Tempat kami bekerja. Bambu, alam, dan arsitektur bertemu di
-              sini.</span
+              >Where we work. Bamboo, nature, and architecture meet here.</span
             >
           </div>
         </div>
@@ -451,9 +450,9 @@
       <div class="wrap">
         <div class="cta">
           <h2>
-            Punya lahan atau ide?
+            Have land or an idea?
             <span class="o" style="color: var(--gold-hi)"
-              >Ceritakan pada kami.</span
+              >Tell us about it.</span
             >
           </h2>
           <div class="acts">
@@ -462,7 +461,7 @@
               data-book
               style="padding: 15px 28px; font-size: 14px"
             >
-              Mulai konsultasi →</button
+              Start consultation →</button
             ><a
               class="pill"
               href="https://www.instagram.com/bamboolab.lombok/"
@@ -474,8 +473,8 @@
           </div>
         </div>
         <div class="fine">
-          <span>© 2026 Bamboo Lab Architect · Lombok, Nusa Tenggara Barat</span
-          ><span>Hubungi lewat DM Instagram @bamboolab.lombok</span>
+          <span>© 2026 Bamboo Lab Architect · Lombok, West Nusa Tenggara</span
+          ><span>Contact via Instagram DM @bamboolab.lombok</span>
         </div>
       </div>
     </footer>
@@ -485,20 +484,21 @@
         class="dlg"
         role="dialog"
         aria-modal="true"
-        aria-label="Konsultasi proyek"
+        aria-label="Project consultation"
       >
         <aside>
-          <h3>Konsultasi</h3>
+          <h3>Consultation</h3>
           <ol id="mnav">
-            <li>Bangunan</li>
-            <li>Skala</li>
-            <li>Ringkasan</li>
+            <li>Building</li>
+            <li>Scale</li>
+            <li>Summary</li>
           </ol>
         </aside>
         <main id="mbody"></main>
       </div>
     </div>
 
+    <script src="https://unpkg.com/scrollreveal"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
     <script src="js/script.js"></script>
   </body>

@@ -1507,3 +1507,60 @@ function startScene() {
 )
   .catch(() => {})
   .then(startScene);
+
+/* ---------- ScrollReveal Animations ---------- */
+if (typeof ScrollReveal !== "undefined") {
+  const sr = ScrollReveal({
+    origin: "bottom",
+    distance: "36px",
+    duration: 850,
+    delay: 100,
+    easing: "cubic-bezier(0.22, 1, 0.36, 1)",
+    reset: false, // Animasi berjalan satu kali saat di-scroll
+  });
+
+  // 1. Section Karya (#karya)
+  sr.reveal("#karya .sec-h h2", { origin: "left", distance: "28px" });
+  sr.reveal("#karya .sec-h p", {
+    origin: "right",
+    distance: "28px",
+    delay: 180,
+  });
+  sr.reveal("#karya .doc", { interval: 140 }); // Muncul bergantian tiap kartu
+
+  // Section Layanan (#layanan)
+  sr.reveal("#layanan .sec-h h2", { origin: "left", distance: "28px" });
+  sr.reveal("#layanan .sec-h p", {
+    origin: "right",
+    distance: "28px",
+    delay: 180,
+  });
+  sr.reveal("#layanan .plan", { interval: 160, distance: "44px" });
+
+  // Section Kenapa Bambu (#material)
+  sr.reveal("#material .sec-h h2", { origin: "left", distance: "28px" });
+  sr.reveal("#material .sec-h p", {
+    origin: "right",
+    distance: "28px",
+    delay: 180,
+  });
+  sr.reveal("#material .why .q", { interval: 140 });
+  sr.reveal("#material .why .big", {
+    origin: "right",
+    distance: "36px",
+    delay: 350,
+  });
+
+  // Section Kontak / Footer (#kontak)
+  sr.reveal("#kontak .cta", {
+    origin: "bottom",
+    distance: "40px",
+    duration: 950,
+    scale: 0.97,
+  });
+  sr.reveal("#kontak .fine", {
+    origin: "bottom",
+    distance: "16px",
+    delay: 250,
+  });
+}
