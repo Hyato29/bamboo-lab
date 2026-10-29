@@ -566,10 +566,12 @@ languageSelect.addEventListener("change", () =>
 );
 const navToggle = document.getElementById("nav-toggle");
 const primaryNav = document.getElementById("primary-nav");
+const nav = navToggle.closest(".nav");
 navToggle.addEventListener("click", () => {
   const expanded = navToggle.getAttribute("aria-expanded") !== "true";
   navToggle.setAttribute("aria-expanded", String(expanded));
   primaryNav.classList.toggle("is-open", expanded);
+  nav.classList.toggle("menu-open", expanded);
   const label = expanded ? "Close navigation menu" : "Open navigation menu";
   navToggle.setAttribute("aria-label", translate(label));
   navToggle.title = translate(label);
@@ -577,6 +579,15 @@ navToggle.addEventListener("click", () => {
 primaryNav.addEventListener("click", (event) => {
   if (!event.target.closest("a")) return;
   primaryNav.classList.remove("is-open");
+  nav.classList.remove("menu-open");
+  navToggle.setAttribute("aria-expanded", "false");
+  navToggle.setAttribute("aria-label", translate("Open navigation menu"));
+  navToggle.title = translate("Open navigation menu");
+});
+document.addEventListener("click", (event) => {
+  if (!nav.classList.contains("menu-open") || nav.contains(event.target)) return;
+  primaryNav.classList.remove("is-open");
+  nav.classList.remove("menu-open");
   navToggle.setAttribute("aria-expanded", "false");
   navToggle.setAttribute("aria-label", translate("Open navigation menu"));
   navToggle.title = translate("Open navigation menu");
@@ -586,10 +597,19 @@ document.addEventListener("keydown", (event) => {
     return;
   }
   primaryNav.classList.remove("is-open");
+  nav.classList.remove("menu-open");
   navToggle.setAttribute("aria-expanded", "false");
   navToggle.setAttribute("aria-label", translate("Open navigation menu"));
   navToggle.title = translate("Open navigation menu");
   navToggle.focus();
+});
+addEventListener("resize", () => {
+  if (innerWidth <= 1100 || !nav.classList.contains("menu-open")) return;
+  primaryNav.classList.remove("is-open");
+  nav.classList.remove("menu-open");
+  navToggle.setAttribute("aria-expanded", "false");
+  navToggle.setAttribute("aria-label", translate("Open navigation menu"));
+  navToggle.title = translate("Open navigation menu");
 });
 
 const TYPES = [

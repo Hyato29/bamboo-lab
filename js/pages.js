@@ -68,6 +68,7 @@ const themeToggle = document.getElementById("theme-toggle");
 const languageSelect = document.getElementById("language-select");
 const navToggle = document.getElementById("nav-toggle");
 const primaryNav = document.getElementById("primary-nav");
+const nav = navToggle.closest(".nav");
 let language = "en";
 let theme = "light";
 
@@ -214,6 +215,7 @@ navToggle.addEventListener("click", () => {
   const expanded = navToggle.getAttribute("aria-expanded") !== "true";
   navToggle.setAttribute("aria-expanded", String(expanded));
   primaryNav.classList.toggle("is-open", expanded);
+  nav.classList.toggle("menu-open", expanded);
   const label = translate(expanded ? "menu.close" : "menu.open");
   navToggle.setAttribute("aria-label", label);
   navToggle.title = label;
@@ -221,6 +223,15 @@ navToggle.addEventListener("click", () => {
 primaryNav.addEventListener("click", (event) => {
   if (!event.target.closest("a")) return;
   primaryNav.classList.remove("is-open");
+  nav.classList.remove("menu-open");
+  navToggle.setAttribute("aria-expanded", "false");
+  navToggle.setAttribute("aria-label", translate("menu.open"));
+  navToggle.title = translate("menu.open");
+});
+document.addEventListener("click", (event) => {
+  if (!nav.classList.contains("menu-open") || nav.contains(event.target)) return;
+  primaryNav.classList.remove("is-open");
+  nav.classList.remove("menu-open");
   navToggle.setAttribute("aria-expanded", "false");
   navToggle.setAttribute("aria-label", translate("menu.open"));
   navToggle.title = translate("menu.open");
@@ -230,10 +241,19 @@ document.addEventListener("keydown", (event) => {
     return;
   }
   primaryNav.classList.remove("is-open");
+  nav.classList.remove("menu-open");
   navToggle.setAttribute("aria-expanded", "false");
   navToggle.setAttribute("aria-label", translate("menu.open"));
   navToggle.title = translate("menu.open");
   navToggle.focus();
+});
+addEventListener("resize", () => {
+  if (innerWidth <= 1100 || !nav.classList.contains("menu-open")) return;
+  primaryNav.classList.remove("is-open");
+  nav.classList.remove("menu-open");
+  navToggle.setAttribute("aria-expanded", "false");
+  navToggle.setAttribute("aria-label", translate("menu.open"));
+  navToggle.title = translate("menu.open");
 });
 
 const enquiryForm = document.getElementById("enquiry-form");
