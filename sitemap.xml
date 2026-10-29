@@ -1,8 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<urlset
-  xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
-  xmlns:xhtml="http://www.w3.org/1999/xhtml"
->
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9" xmlns:xhtml="http://www.w3.org/1999/xhtml">
   <url>
     <loc>https://bamboo-lab.vercel.app/?lang=en</loc>
     <xhtml:link rel="alternate" hreflang="en" href="https://bamboo-lab.vercel.app/?lang=en" />
@@ -23,5 +20,110 @@
     <xhtml:link rel="alternate" hreflang="id" href="https://bamboo-lab.vercel.app/?lang=id" />
     <xhtml:link rel="alternate" hreflang="ja" href="https://bamboo-lab.vercel.app/?lang=ja" />
     <xhtml:link rel="alternate" hreflang="x-default" href="https://bamboo-lab.vercel.app/?lang=en" />
+  </url>
+  <url>
+    <loc>https://bamboo-lab.vercel.app/our-story.html?lang=en</loc>
+    <xhtml:link rel="alternate" hreflang="en" href="https://bamboo-lab.vercel.app/our-story.html?lang=en" />
+    <xhtml:link rel="alternate" hreflang="id" href="https://bamboo-lab.vercel.app/our-story.html?lang=id" />
+    <xhtml:link rel="alternate" hreflang="ja" href="https://bamboo-lab.vercel.app/our-story.html?lang=ja" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://bamboo-lab.vercel.app/our-story.html?lang=en" />
+  </url>
+  <url>
+    <loc>https://bamboo-lab.vercel.app/our-story.html?lang=id</loc>
+    <xhtml:link rel="alternate" hreflang="en" href="https://bamboo-lab.vercel.app/our-story.html?lang=en" />
+    <xhtml:link rel="alternate" hreflang="id" href="https://bamboo-lab.vercel.app/our-story.html?lang=id" />
+    <xhtml:link rel="alternate" hreflang="ja" href="https://bamboo-lab.vercel.app/our-story.html?lang=ja" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://bamboo-lab.vercel.app/our-story.html?lang=en" />
+  </url>
+  <url>
+    <loc>https://bamboo-lab.vercel.app/our-story.html?lang=ja</loc>
+    <xhtml:link rel="alternate" hreflang="en" href="https://bamboo-lab.vercel.app/our-story.html?lang=en" />
+    <xhtml:link rel="alternate" hreflang="id" href="https://bamboo-lab.vercel.app/our-story.html?lang=id" />
+    <xhtml:link rel="alternate" hreflang="ja" href="https://bamboo-lab.vercel.app/our-story.html?lang=ja" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://bamboo-lab.vercel.app/our-story.html?lang=en" />
+  </url>
+  <url>
+    <loc>https://bamboo-lab.vercel.app/design-gallery.html?lang=en</loc>
+    <xhtml:link rel="alternate" hreflang="en" href="https://bamboo-lab.vercel.app/design-gallery.html?lang=en" />
+    <xhtml:link rel="alternate" hreflang="id" href="https://bamboo-lab.vercel.app/design-gallery.html?lang=id" />
+    <xhtml:link rel="alternate" hreflang="ja" href="https://bamboo-lab.vercel.app/design-gallery.html?lang=ja" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://bamboo-lab.vercel.app/design-gallery.html?lang=en" />
+  </url>
+  <url>
+    <loc>https://bamboo-lab.vercel.app/design-gallery.html?lang=id</loc>
+    <xhtml:link rel="alternate" hreflang="en" href="https://bamboo-lab.vercel.app/design-gallery.html?lang=en" />
+    <xhtml:link rel="alternate" hreflang="id" href="https://bamboo-lab.vercel.app/design-gallery.html?lang=id" />
+    <xhtml:link rel="alternate" hreflang="ja" href="https://bamboo-lab.vercel.app/design-gallery.html?lang=ja" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://bamboo-lab.vercel.app/design-gallery.html?lang=en" />
+  </url>
+  <url>
+    <loc>https://bamboo-lab.vercel.app/design-gallery.html?lang=ja</loc>
+    <xhtml:link rel="alternate" hreflang="en" href="https://bamboo-lab.vercel.app/design-gallery.html?lang=en" />
+    <xhtml:link rel="alternate" hreflang="id" href="https://bamboo-lab.vercel.app/design-gallery.html?lang=id" />
+    <xhtml:link rel="alternate" hreflang="ja" href="https://bamboo-lab.vercel.app/design-gallery.html?lang=ja" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://bamboo-lab.vercel.app/design-gallery.html?lang=en" />
+  </url>
+  <url>
+    <loc>https://bamboo-lab.vercel.app/locations.html?lang=en</loc>
+    <xhtml:link rel="alternate" hreflang="en" href="https://bamboo-lab.vercel.app/locations.html?lang=en" />
+    <xhtml:link rel="alternate" hreflang="id" href="https://bamboo-lab.vercel.app/locations.html?lang=id" />
+    <xhtml:link rel="alternate" hreflang="ja" href="https://bamboo-lab.vercel.app/locations.html?lang=ja" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://bamboo-lab.vercel.app/locations.html?lang=en" />
+  </url>
+  <url>
+    <loc>https://bamboo-lab.vercel.app/locations.html?lang=id</loc>
+    <xhtml:link rel="alternate" hreflang="en" href="https://bamboo-lab.vercel.app/locations.html?lang=en" />
+    <xhtml:link rel="alternate" hreflang="id" href="https://bamboo-lab.vercel.app/locations.html?lang=id" />
+    <xhtml:link rel="alternate" hreflang="ja" href="https://bamboo-lab.vercel.app/locations.html?lang=ja" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://bamboo-lab.vercel.app/locations.html?lang=en" />
+  </url>
+  <url>
+    <loc>https://bamboo-lab.vercel.app/locations.html?lang=ja</loc>
+    <xhtml:link rel="alternate" hreflang="en" href="https://bamboo-lab.vercel.app/locations.html?lang=en" />
+    <xhtml:link rel="alternate" hreflang="id" href="https://bamboo-lab.vercel.app/locations.html?lang=id" />
+    <xhtml:link rel="alternate" hreflang="ja" href="https://bamboo-lab.vercel.app/locations.html?lang=ja" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://bamboo-lab.vercel.app/locations.html?lang=en" />
+  </url>
+  <url>
+    <loc>https://bamboo-lab.vercel.app/careers.html?lang=en</loc>
+    <xhtml:link rel="alternate" hreflang="en" href="https://bamboo-lab.vercel.app/careers.html?lang=en" />
+    <xhtml:link rel="alternate" hreflang="id" href="https://bamboo-lab.vercel.app/careers.html?lang=id" />
+    <xhtml:link rel="alternate" hreflang="ja" href="https://bamboo-lab.vercel.app/careers.html?lang=ja" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://bamboo-lab.vercel.app/careers.html?lang=en" />
+  </url>
+  <url>
+    <loc>https://bamboo-lab.vercel.app/careers.html?lang=id</loc>
+    <xhtml:link rel="alternate" hreflang="en" href="https://bamboo-lab.vercel.app/careers.html?lang=en" />
+    <xhtml:link rel="alternate" hreflang="id" href="https://bamboo-lab.vercel.app/careers.html?lang=id" />
+    <xhtml:link rel="alternate" hreflang="ja" href="https://bamboo-lab.vercel.app/careers.html?lang=ja" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://bamboo-lab.vercel.app/careers.html?lang=en" />
+  </url>
+  <url>
+    <loc>https://bamboo-lab.vercel.app/careers.html?lang=ja</loc>
+    <xhtml:link rel="alternate" hreflang="en" href="https://bamboo-lab.vercel.app/careers.html?lang=en" />
+    <xhtml:link rel="alternate" hreflang="id" href="https://bamboo-lab.vercel.app/careers.html?lang=id" />
+    <xhtml:link rel="alternate" hreflang="ja" href="https://bamboo-lab.vercel.app/careers.html?lang=ja" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://bamboo-lab.vercel.app/careers.html?lang=en" />
+  </url>
+  <url>
+    <loc>https://bamboo-lab.vercel.app/contact.html?lang=en</loc>
+    <xhtml:link rel="alternate" hreflang="en" href="https://bamboo-lab.vercel.app/contact.html?lang=en" />
+    <xhtml:link rel="alternate" hreflang="id" href="https://bamboo-lab.vercel.app/contact.html?lang=id" />
+    <xhtml:link rel="alternate" hreflang="ja" href="https://bamboo-lab.vercel.app/contact.html?lang=ja" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://bamboo-lab.vercel.app/contact.html?lang=en" />
+  </url>
+  <url>
+    <loc>https://bamboo-lab.vercel.app/contact.html?lang=id</loc>
+    <xhtml:link rel="alternate" hreflang="en" href="https://bamboo-lab.vercel.app/contact.html?lang=en" />
+    <xhtml:link rel="alternate" hreflang="id" href="https://bamboo-lab.vercel.app/contact.html?lang=id" />
+    <xhtml:link rel="alternate" hreflang="ja" href="https://bamboo-lab.vercel.app/contact.html?lang=ja" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://bamboo-lab.vercel.app/contact.html?lang=en" />
+  </url>
+  <url>
+    <loc>https://bamboo-lab.vercel.app/contact.html?lang=ja</loc>
+    <xhtml:link rel="alternate" hreflang="en" href="https://bamboo-lab.vercel.app/contact.html?lang=en" />
+    <xhtml:link rel="alternate" hreflang="id" href="https://bamboo-lab.vercel.app/contact.html?lang=id" />
+    <xhtml:link rel="alternate" hreflang="ja" href="https://bamboo-lab.vercel.app/contact.html?lang=ja" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://bamboo-lab.vercel.app/contact.html?lang=en" />
   </url>
 </urlset>

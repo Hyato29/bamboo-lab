@@ -49,6 +49,15 @@ const LANGUAGE_COPY = {
     Projects: "Proyek",
     Services: "Layanan",
     "Why Bamboo": "Mengapa Bambu",
+    Home: "Beranda",
+    "Our Story": "Kisah Kami",
+    "Design Gallery": "Galeri Desain",
+    Locations: "Lokasi",
+    Careers: "Karier",
+    "Get in Touch": "Hubungi Kami",
+    "Open navigation menu": "Buka menu navigasi",
+    "Close navigation menu": "Tutup menu navigasi",
+    "Primary navigation": "Navigasi utama",
     Why: "Mengapa",
     Contact: "Kontak",
     Consultation: "Konsultasi",
@@ -222,6 +231,15 @@ const LANGUAGE_COPY = {
     Projects: "プロジェクト",
     Services: "サービス",
     "Why Bamboo": "竹を選ぶ理由",
+    Home: "ホーム",
+    "Our Story": "私たちのストーリー",
+    "Design Gallery": "デザインギャラリー",
+    Locations: "拠点",
+    Careers: "採用情報",
+    "Get in Touch": "お問い合わせ",
+    "Open navigation menu": "ナビゲーションメニューを開く",
+    "Close navigation menu": "ナビゲーションメニューを閉じる",
+    "Primary navigation": "メインナビゲーション",
     Why: "なぜ",
     Contact: "お問い合わせ",
     Consultation: "ご相談",
@@ -492,6 +510,17 @@ function applyLanguage(language, save = false) {
     "aria-label",
     translate("Bamboo Lab Architect, home"),
   );
+  document.getElementById("primary-nav").setAttribute(
+    "aria-label",
+    translate("Primary navigation"),
+  );
+  const navToggle = document.getElementById("nav-toggle");
+  const navLabel =
+    navToggle.getAttribute("aria-expanded") === "true"
+      ? "Close navigation menu"
+      : "Open navigation menu";
+  navToggle.setAttribute("aria-label", translate(navLabel));
+  navToggle.title = translate(navLabel);
   document.getElementById("gl").setAttribute(
     "aria-label",
     translate("3D illustration of a bamboo project journey by Bamboo Lab"),
@@ -535,6 +564,33 @@ themeToggle.addEventListener("click", () => {
 languageSelect.addEventListener("change", () =>
   applyLanguage(languageSelect.value, true),
 );
+const navToggle = document.getElementById("nav-toggle");
+const primaryNav = document.getElementById("primary-nav");
+navToggle.addEventListener("click", () => {
+  const expanded = navToggle.getAttribute("aria-expanded") !== "true";
+  navToggle.setAttribute("aria-expanded", String(expanded));
+  primaryNav.classList.toggle("is-open", expanded);
+  const label = expanded ? "Close navigation menu" : "Open navigation menu";
+  navToggle.setAttribute("aria-label", translate(label));
+  navToggle.title = translate(label);
+});
+primaryNav.addEventListener("click", (event) => {
+  if (!event.target.closest("a")) return;
+  primaryNav.classList.remove("is-open");
+  navToggle.setAttribute("aria-expanded", "false");
+  navToggle.setAttribute("aria-label", translate("Open navigation menu"));
+  navToggle.title = translate("Open navigation menu");
+});
+document.addEventListener("keydown", (event) => {
+  if (event.key !== "Escape" || !primaryNav.classList.contains("is-open")) {
+    return;
+  }
+  primaryNav.classList.remove("is-open");
+  navToggle.setAttribute("aria-expanded", "false");
+  navToggle.setAttribute("aria-label", translate("Open navigation menu"));
+  navToggle.title = translate("Open navigation menu");
+  navToggle.focus();
+});
 
 const TYPES = [
   {
