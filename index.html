@@ -28,8 +28,8 @@
           14px -apple-system,
           BlinkMacSystemFont,
           sans-serif;
-        background: #fff;
-        color: #000;
+        background: var(--sand, #f1e8d6);
+        color: var(--ink, #0f2744);
       }
       img {
         max-width: 100%;
@@ -120,6 +120,26 @@
         <li><a href="#kontak">Contact</a></li>
       </ul>
       <div class="r">
+        <button
+          class="pill theme-toggle"
+          id="theme-toggle"
+          type="button"
+          aria-label="Switch to dark mode"
+          aria-pressed="false"
+          title="Switch to dark mode"
+        >
+          <svg viewBox="0 0 24 24" aria-hidden="true">
+            <path
+              class="moon"
+              d="M20.2 15.6A8.4 8.4 0 0 1 8.4 3.8 8.5 8.5 0 1 0 20.2 15.6Z"
+            />
+            <g class="sun">
+              <circle cx="12" cy="12" r="4" />
+              <path d="M12 2v2m0 16v2M4.93 4.93l1.42 1.42m11.3 11.3 1.42 1.42M2 12h2m16 0h2M4.93 19.07l1.42-1.42m11.3-11.3 1.42-1.42" />
+            </g>
+          </svg>
+          <span>Dark</span>
+        </button>
         <button class="pill dark" data-book>
           Consultation <span aria-hidden="true">→</span>
         </button>
@@ -441,6 +461,57 @@
             ><span
               >Where we work. Bamboo, nature, and architecture meet here.</span
             >
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- reviews section -->
+    <section class="blk band gut" id="reviews">
+      <div class="wrap">
+        <div class="sec-h">
+          <h2>Client <span class="o">Stories.</span></h2>
+          <p>
+            Hear from those who have built and lived in our bamboo creations.
+          </p>
+        </div>
+        <div class="reviews-grid">
+          <!-- Review 1 -->
+          <div class="review-card">
+            <div class="stars" aria-label="5 stars">★★★★★</div>
+            <p>
+              "Bamboo Lab didn't just build a villa; they crafted a piece of
+              art. The curved roof is a masterpiece, and the natural cooling is
+              unbelievable."
+            </p>
+            <div class="author">
+              <strong>Sarah Jenkins</strong>
+              <span>Villa Owner, Kuta Lombok</span>
+            </div>
+          </div>
+          <!-- Review 2 -->
+          <div class="review-card">
+            <div class="stars" aria-label="5 stars">★★★★★</div>
+            <p>
+              "Professional team from design to handover. Seeing the 3D model
+              turn into a real bamboo structure was a magical experience."
+            </p>
+            <div class="author">
+              <strong>Mark &amp; Elena</strong>
+              <span>Eco-Resort Founders</span>
+            </div>
+          </div>
+          <!-- Review 3 -->
+          <div class="review-card">
+            <div class="stars" aria-label="5 stars">★★★★★</div>
+            <p>
+              "The bamboo pavilion has become the centerpiece of our restaurant.
+              It draws people in and creates a perfectly warm atmosphere."
+            </p>
+            <div class="author">
+              <strong>Budi Santoso</strong>
+              <span>Restaurant Owner</span>
+            </div>
           </div>
         </div>
       </div>

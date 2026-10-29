@@ -1,26 +1,64 @@
+const THEME_STORAGE_KEY = "bamboo-lab-theme";
+const themeToggle = document.getElementById("theme-toggle");
+let initialTheme = "light";
+
+try {
+  const savedTheme = localStorage.getItem(THEME_STORAGE_KEY);
+  if (savedTheme === "light" || savedTheme === "dark") initialTheme = savedTheme;
+} catch (error) {
+  console.warn("Unable to read the saved theme preference.", error);
+}
+
+function applyTheme(theme, save = false) {
+  const isDark = theme === "dark";
+  const nextTheme = isDark ? "dark" : "light";
+  const label = `Switch to ${isDark ? "light" : "dark"} mode`;
+  document.documentElement.dataset.theme = nextTheme;
+  themeToggle.setAttribute("aria-label", label);
+  themeToggle.setAttribute("aria-pressed", String(isDark));
+  themeToggle.title = label;
+  themeToggle.querySelector("span").textContent = isDark ? "Light" : "Dark";
+
+  if (save) {
+    try {
+      localStorage.setItem(THEME_STORAGE_KEY, nextTheme);
+    } catch (error) {
+      console.warn("Unable to save the theme preference.", error);
+    }
+  }
+}
+
+applyTheme(initialTheme);
+themeToggle.addEventListener("click", () => {
+  applyTheme(
+    document.documentElement.dataset.theme === "dark" ? "light" : "dark",
+    true,
+  );
+});
+
 const TYPES = [
   {
-    n: "Villa & Pod Bambu",
-    s: "Hunian, unit sewa, glamping",
-    d: "Kubah anyaman yang hangat dan privat, dengan bukaan ke lanskap.",
+    n: "Bamboo Villas & Pods",
+    s: "Residences, rental units, glamping",
+    d: "Warm and private woven domes with openings to the landscape.",
     bg: "#e8dcc0",
   },
   {
-    n: "Restoran & Kafe",
-    s: "Ruang makan beratap gelombang",
-    d: "Atap bergelombang dari shingle bambu yang menaungi ruang makan terbuka.",
+    n: "Restaurants & Cafes",
+    s: "Wave-roofed dining spaces",
+    d: "Corrugated roofs made of bamboo shingles sheltering open dining areas.",
     bg: "#dde4e6",
   },
   {
-    n: "Pavilion & Gazebo",
-    s: "Tempat berkumpul dan acara",
-    d: "Struktur terbuka dengan rangka melengkung, cocok untuk bale dan area acara.",
+    n: "Pavilions & Gazebos",
+    s: "Gathering and event spaces",
+    d: "Open structures with curved frames, perfect for bales and event areas.",
     bg: "#eadfc4",
   },
   {
-    n: "Resort & Wisata",
-    s: "Kawasan dengan banyak unit",
-    d: "Gugus unit, kolam, dan fasilitas bersama yang dirancang sebagai satu kawasan.",
+    n: "Resorts & Tourism",
+    s: "Complexes with multiple units",
+    d: "Clusters of units, pools, and shared facilities designed as one cohesive area.",
     bg: "#d8e3d4",
   },
 ];
@@ -35,17 +73,17 @@ document.getElementById("docs").innerHTML = TYPES.map(
  <article class="doc"><div class="ph" style="background:${d.bg}">
   <svg viewBox="0 0 200 215" preserveAspectRatio="xMidYMid slice" aria-hidden="true">${ART[i]}</svg><span class="tag">${d.s}</span></div>
   <div><h3>${d.n}</h3><p>${d.d}</p></div>
-  <div class="foot"><b>Desain custom</b><button data-book data-type="${i}">Diskusikan</button></div></article>`,
+  <div class="foot"><b>Custom design</b><button data-book data-type="${i}">Discuss</button></div></article>`,
 ).join("");
 
 /* ---------- progress nav ---------- */
 const LABELS = [
   ["01", "Studio"],
-  ["02", "Bahan"],
-  ["03", "Desain"],
-  ["04", "Bengkel"],
-  ["05", "Lokasi"],
-  ["06", "Hasil"],
+  ["02", "Materials"],
+  ["03", "Design"],
+  ["04", "Workshop"],
+  ["05", "Location"],
+  ["06", "Result"],
 ];
 const progEl = document.getElementById("prog");
 progEl.innerHTML = LABELS.map(
@@ -85,13 +123,17 @@ const modal = document.getElementById("modal"),
   mbody = document.getElementById("mbody"),
   mnav = document.getElementById("mnav");
 const SIZES = [
-  "Di bawah 50 m²",
+  "Under 50 m²",
   "50–150 m²",
   "150–500 m²",
-  "Di atas 500 m²",
-  "Belum tahu",
+  "Over 500 m²",
+  "Not sure yet",
 ];
-const STAGES = ["Baru punya ide", "Sudah punya lahan", "Sudah punya gambar"];
+const STAGES = [
+  "Just have an idea",
+  "Already own land",
+  "Already have drawings",
+];
 let st = {
     step: 0,
     type: 0,
@@ -118,27 +160,27 @@ function closeModal() {
   lastFocus && lastFocus.focus && lastFocus.focus();
 }
 function briefText() {
-  return `Halo Bamboo Lab, saya ingin berkonsultasi.\nJenis bangunan: ${TYPES[st.type].n}\nPerkiraan luas: ${st.size}\nTahap saat ini: ${st.stage}\nLokasi lahan: (isi di sini)`;
+  return `Hello Bamboo Lab, I'd like to consult.\nBuilding type: ${TYPES[st.type].n}\nEstimated size: ${st.size}\nCurrent stage: ${st.stage}\nLand location: (fill here)`;
 }
 function renderModal() {
   [...mnav.children].forEach((li, i) => {
     li.className = i < st.step ? "done" : i === st.step ? "on" : "";
   });
-  const x = '<button class="close" data-x aria-label="Tutup">✕</button>';
+  const x = '<button class="close" data-x aria-label="Close">✕</button>';
   if (st.step === 0) {
-    mbody.innerHTML = `<div class="head"><div><h4>Bangunan apa yang Anda impikan?</h4><p style="margin:4px 0 0;color:var(--muted);font-size:13px">Pilih yang paling dekat. Bisa disesuaikan nanti.</p></div>${x}</div>
+    mbody.innerHTML = `<div class="head"><div><h4>What kind of building are you dreaming of?</h4><p style="margin:4px 0 0;color:var(--muted);font-size:13px">Choose the closest one. It can be adjusted later.</p></div>${x}</div>
     ${TYPES.map((d, i) => `<button class="opt ${i === st.type ? "sel" : ""}" data-type-i="${i}"><span><b>${d.n}</b><br><span style="color:var(--muted);font-size:12px">${d.s}</span></span></button>`).join("")}
-    <div class="acts"><span></span><button class="pill dark" data-next>Lanjut →</button></div>`;
+    <div class="acts"><span></span><button class="pill dark" data-next>Next →</button></div>`;
   } else if (st.step === 1) {
-    mbody.innerHTML = `<div class="head"><div><h4>Seberapa besar dan sudah sampai mana?</h4><p style="margin:4px 0 0;color:var(--muted);font-size:13px">${TYPES[st.type].n}</p></div>${x}</div>
-    <div><b style="font-size:12px">Perkiraan luas bangunan</b><div class="chips" style="margin-top:8px">${SIZES.map((d) => `<button class="chip ${d === st.size ? "sel" : ""}" data-size="${d}">${d}</button>`).join("")}</div></div>
-    <div><b style="font-size:12px">Tahap saat ini</b><div class="chips" style="margin-top:8px">${STAGES.map((t) => `<button class="chip ${t === st.stage ? "sel" : ""}" data-stage="${t}">${t}</button>`).join("")}</div></div>
-    <div class="acts"><button class="pill" data-prev>← Kembali</button><button class="pill dark" data-next>Lanjut →</button></div>`;
+    mbody.innerHTML = `<div class="head"><div><h4>How big is it and what's your current stage?</h4><p style="margin:4px 0 0;color:var(--muted);font-size:13px">${TYPES[st.type].n}</p></div>${x}</div>
+    <div><b style="font-size:12px">Estimated building size</b><div class="chips" style="margin-top:8px">${SIZES.map((d) => `<button class="chip ${d === st.size ? "sel" : ""}" data-size="${d}">${d}</button>`).join("")}</div></div>
+    <div><b style="font-size:12px">Current stage</b><div class="chips" style="margin-top:8px">${STAGES.map((t) => `<button class="chip ${t === st.stage ? "sel" : ""}" data-stage="${t}">${t}</button>`).join("")}</div></div>
+    <div class="acts"><button class="pill" data-prev>← Back</button><button class="pill dark" data-next>Next →</button></div>`;
   } else {
-    mbody.innerHTML = `<div class="head"><div><h4>Ringkasan untuk dikirim</h4><p style="margin:4px 0 0;color:var(--muted);font-size:13px">Salin teks ini, lalu kirim lewat DM Instagram @bamboolab.lombok.</p></div>${x}</div>
+    mbody.innerHTML = `<div class="head"><div><h4>Summary to send</h4><p style="margin:4px 0 0;color:var(--muted);font-size:13px">Copy this text, then send it via Instagram DM @bamboolab.lombok.</p></div>${x}</div>
     <pre class="brief" id="brief">${briefText()}</pre>
-    <p id="cp" style="margin:0;font-size:12.5px;color:var(--gold);min-height:18px" aria-live="polite">${st.copied ? "Ringkasan disalin. Tempel di DM Instagram." : ""}</p>
-    <div class="acts"><button class="pill" data-prev>← Kembali</button><span style="display:flex;gap:8px;flex-wrap:wrap"><button class="pill dark" data-copy>Salin ringkasan</button><a class="pill or" href="https://www.instagram.com/bamboolab.lombok/" target="_blank" rel="noopener">Buka Instagram ↗</a></span></div>`;
+    <p id="cp" style="margin:0;font-size:12.5px;color:var(--gold);min-height:18px" aria-live="polite">${st.copied ? "Summary copied. Paste it into Instagram DM." : ""}</p>
+    <div class="acts"><button class="pill" data-prev>← Back</button><span style="display:flex;gap:8px;flex-wrap:wrap"><button class="pill dark" data-copy>Copy summary</button><a class="pill or" href="https://www.instagram.com/bamboolab.lombok/" target="_blank" rel="noopener">Open Instagram ↗</a></span></div>`;
   }
 }
 function copyBrief() {
@@ -146,7 +188,7 @@ function copyBrief() {
     done = () => {
       st.copied = true;
       const c = document.getElementById("cp");
-      if (c) c.textContent = "Ringkasan disalin. Tempel di DM Instagram.";
+      if (c) c.textContent = "Summary copied. Paste it into Instagram DM.";
     },
     fallback = () => {
       const r = document.createRange();
@@ -155,8 +197,7 @@ function copyBrief() {
       s.removeAllRanges();
       s.addRange(r);
       const c = document.getElementById("cp");
-      if (c)
-        c.textContent = "Teks sudah dipilih. Tekan salin pada perangkat Anda.";
+      if (c) c.textContent = "Text is selected. Press copy on your device.";
     };
   try {
     navigator.clipboard.writeText(t).then(done, fallback);
@@ -970,10 +1011,10 @@ function startScene() {
     person(g, -13, 4.5, { shirt: C.navy, hair: 0x241a15 });
   })();
 
-  /* S1 bahan: grove, curing tank, stacked poles */
+  /* S1 materials: grove, curing tank, stacked poles */
   (function () {
     const g = stations[1];
-    deck(g, 22, 18, "BAHAN & PENGAWETAN");
+    deck(g, 22, 18, "MATERIALS & PRESERVATION");
     clump(g, -8.6, -6.2, 8, 0.85);
     for (let l = 0; l < 3; l++)
       for (let k = 0; k < 4; k++)
@@ -1009,14 +1050,14 @@ function startScene() {
     const bt = tex(
       [
         {
-          t: "BAMBU PILIHAN",
+          t: "SELECTED BAMBOO",
           x: 20,
           y: 60,
           font: '800 32px "Bricolage Grotesque",sans-serif',
           fg: "#d6b273",
         },
         {
-          t: "diawetkan sebelum dipakai",
+          t: "treated before usage",
           x: 22,
           y: 108,
           font: '500 19px "Figtree",sans-serif',
@@ -1042,10 +1083,10 @@ function startScene() {
     plant(g, -9.4, 7.6);
   })();
 
-  /* S2 desain: drafting table, model, sketch board */
+  /* S2 design: drafting table, model, sketch board */
   (function () {
     const g = stations[2];
-    deck(g, 22, 18, "RUANG DESAIN");
+    deck(g, 22, 18, "DESIGN ROOM");
     box(g, 5.6, 0.22, 2.6, C.wood, 3, 1.55, -5);
     [-2.5, 2.5].forEach((dx) =>
       [-1, 1].forEach((dz) => pole(g, 3 + dx, 0, -5 + dz * 1, 1.55, 0.1)),
@@ -1080,10 +1121,10 @@ function startScene() {
     clump(g, 9.4, -2.2, 5, 0.7);
   })();
 
-  /* S3 bengkel: bending jig, arched ribs, shingle stack */
+  /* S3 workshop: bending jig, arched ribs, shingle stack */
   (function () {
     const g = stations[3];
-    deck(g, 22, 18, "BENGKEL FABRIKASI");
+    deck(g, 22, 18, "FABRICATION WORKSHOP");
     for (let k = 0; k < 4; k++)
       archTube(g, 5, 4.2, 0.12, C.bam, 5.8, 0.15, -7.5 + k * 1.15);
     [
@@ -1135,10 +1176,10 @@ function startScene() {
     plant(g, -9.4, -2.6);
   })();
 
-  /* S4 lokasi: dome frame under construction, scaffold */
+  /* S4 location: dome frame under construction, scaffold */
   (function () {
     const g = stations[4];
-    deck(g, 22, 18, "LOKASI PROYEK");
+    deck(g, 22, 18, "PROJECT LOCATION");
     const cx = 1,
       cz = -4.2;
     cyl(g, 5.6, 5.8, 0.35, C.wood, cx, 0.15, cz, 40);
@@ -1201,10 +1242,10 @@ function startScene() {
     plant(g, -9.4, 7.6);
   })();
 
-  /* S5 hasil: finished pods, pool, wave-roof terrace */
+  /* S5 result: finished pods, pool, wave-roof terrace */
   (function () {
     const g = stations[5];
-    deck(g, 22, 18, "SERAH TERIMA");
+    deck(g, 22, 18, "HANDOVER");
     function pod(x, z) {
       const q = new THREE.Group();
       q.position.set(x, 0, z);
@@ -1241,14 +1282,14 @@ function startScene() {
     const dt = tex(
       [
         {
-          t: "Terima kasih",
+          t: "Thank you",
           x: 20,
           y: 44,
           font: '800 34px "Bricolage Grotesque",sans-serif',
           fg: "#d6b273",
         },
         {
-          t: "Sampai jumpa di Lombok",
+          t: "See you in Lombok",
           x: 22,
           y: 92,
           font: '500 22px "Figtree",sans-serif',
@@ -1516,19 +1557,19 @@ if (typeof ScrollReveal !== "undefined") {
     duration: 850,
     delay: 100,
     easing: "cubic-bezier(0.22, 1, 0.36, 1)",
-    reset: false, // Animasi berjalan satu kali saat di-scroll
+    reset: false, // Animation runs only once per scroll
   });
 
-  // 1. Section Karya (#karya)
+  // Projects Section (#karya)
   sr.reveal("#karya .sec-h h2", { origin: "left", distance: "28px" });
   sr.reveal("#karya .sec-h p", {
     origin: "right",
     distance: "28px",
     delay: 180,
   });
-  sr.reveal("#karya .doc", { interval: 140 }); // Muncul bergantian tiap kartu
+  sr.reveal("#karya .doc", { interval: 140 });
 
-  // Section Layanan (#layanan)
+  // Services Section (#layanan)
   sr.reveal("#layanan .sec-h h2", { origin: "left", distance: "28px" });
   sr.reveal("#layanan .sec-h p", {
     origin: "right",
@@ -1537,7 +1578,7 @@ if (typeof ScrollReveal !== "undefined") {
   });
   sr.reveal("#layanan .plan", { interval: 160, distance: "44px" });
 
-  // Section Kenapa Bambu (#material)
+  // Why Bamboo Section (#material)
   sr.reveal("#material .sec-h h2", { origin: "left", distance: "28px" });
   sr.reveal("#material .sec-h p", {
     origin: "right",
@@ -1551,7 +1592,7 @@ if (typeof ScrollReveal !== "undefined") {
     delay: 350,
   });
 
-  // Section Kontak / Footer (#kontak)
+  // Contact Section / Footer (#kontak)
   sr.reveal("#kontak .cta", {
     origin: "bottom",
     distance: "40px",
@@ -1563,4 +1604,6 @@ if (typeof ScrollReveal !== "undefined") {
     distance: "16px",
     delay: 250,
   });
+
+  sr.reveal("#reviews .review-card", { interval: 140, distance: "36px" });
 }
